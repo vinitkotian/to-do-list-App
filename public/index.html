@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task-Manager</title>
+
+    <!--Scripts-->
+    <script src="./scripts/main.js"></script>
+
+    <!--Style Dependencies-->
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/add-task.css" />
+  </head>
+  <body>
+    <!--Add Task Form-->
+    <div id="form-backdrop" class="modal-backdrop">
+      <div id="add-task-form" class="add-task-modal">
+        <div class="form-header">
+          <h2>Create Task</h2>
+          <img
+            src="./images/cancel.png"
+            class="close-icn"
+            onclick="closeCreateTask()"
+          />
+        </div>
+        <div class="field-container">
+          <label for="task-name">Task Name:</label>
+          <input type="text" name="task-name" id="task-name" />
+        </div>
+        <div class="field-container">
+          <label for="status">Status:</label>
+          <select type="text" name="status" id="status" value="C">
+            <option value="P">Pending</option>
+            <option value="IP">In Progress</option>
+            <option value="C">Completed</option>
+          </select>
+        </div>
+        <div class="field-container">
+          <label for="task-description">Task Description:</label>
+          <textarea
+            name="task-description"
+            id="task-description"
+            class="textarea-desc"
+          ></textarea>
+        </div>
+        <button class="themed-btn add-task-btn">Add Task</button>
+      </div>
+    </div>
+
+    <!--Add Task Button & Date/Time-->
+    <div class="create-task-btn-ctn">
+      <div id="date-time" class="date-time-ctn">Loading ...</div>
+      <div>
+        <button class="themed-btn" onclick="openCreateTaskView()">
+          Create Task
+        </button>
+      </div>
+    </div>
+
+    <!--Task Record Html-->
+    <div id="tasks-container" class="task-list-container">
+      <div class="task-record" id="aasas">
+        <div class="task-name">Weight Training</div>
+        <div class="icon-ctn">
+          <img src="./images/view.png" class="task-record-icon" />
+        </div>
+        <div class="icon-ctn">
+          <img src="./images/pencil.png" class="task-record-icon" />
+        </div>
+        <div class="icon-ctn">
+          <img src="./images/delete.png" class="task-record-icon" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

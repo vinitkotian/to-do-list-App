@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  background: rgb(29, 29, 29);
+}
+
+label,
+input,
+select,
+option {
+  background: white;
+  border-radius: 0.2rem;
+  height: 2rem;
+  font: 650 1rem "Roboto";
+  color: rgb(31, 6, 54);
+}
+
+h2 {
+  background: white;
+  color: rgb(31, 6, 54);
+  margin-left: 36%;
+}
+
+.create-task-btn-ctn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10rem;
+}
+
+.themed-btn {
+  width: 10rem;
+  height: 2.5rem;
+  border-radius: 0.4rem;
+  background: rgb(125, 58, 233);
+  color: black;
+  border: 2rem transparent red;
+  font: 1rem "Roboto";
+}
+
+.date-time-ctn {
+  color: rgb(200, 174, 243);
+  font: 2rem "Roboto";
+  padding: 1rem;
+}
+
+.task-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-record {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 1rem;
+  width: 30rem;
+  height: 3rem;
+  font: 1.5rem "Roboto";
+}
+
+.task-name {
+  width: 70%;
+  background: white;
+  padding-left: 0.3em;
+}
+
+.icon-ctn {
+  justify-self: flex-end;
+  background: white;
+  padding: 0.3em;
+}
+
+.icon-ctn :active {
+  border: 0.1em dotted rgb(34, 6, 80);
+}
+
+.task-record-icon {
+  width: 1em;
+  height: 1em;
+  background: white;
+}
+
+.form-header {
+  display: flex;
+  width: 95%;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  margin-bottom: 1rem;
+}
+
+.close-icn {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: white;
+}
+
+.close-icn:active {
+  border: 0.1em dotted rgb(34, 6, 80);
+  border-radius: 50%;
+}
