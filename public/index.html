@@ -52,6 +52,47 @@
           Add Task
         </button>
       </div>
+
+      <!--Edit Task Form-->
+      <div id="edit-task-form" class="add-task-modal">
+        <div class="form-header">
+          <h2>Edit Task</h2>
+          <img
+            src="./images/cancel.png"
+            class="close-icn"
+            onclick="closeEditTask()"
+          />
+        </div>
+        <div class="field-container">
+          <label for="task-name">Task Name:</label>
+          <input
+            type="text"
+            name="task-name"
+            id="task-name-edit"
+            autocomplete="off"
+          />
+        </div>
+        <div class="field-container">
+          <label for="status">Status:</label>
+          <select type="text" name="status" id="status-edit" value="C">
+            <option value="P">Pending</option>
+            <option value="IP">In Progress</option>
+            <option value="C">Completed</option>
+          </select>
+        </div>
+        <div class="field-container">
+          <label for="task-description">Task Description:</label>
+          <textarea
+            name="task-description"
+            id="task-description-edit"
+            class="textarea-desc"
+            autocomplete="off"
+          ></textarea>
+        </div>
+        <button class="themed-btn add-task-btn" onclick="editTask()">
+          Edit Task
+        </button>
+      </div>
     </div>
 
     <!--Add Task Button & Date/Time-->

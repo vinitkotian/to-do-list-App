@@ -20,8 +20,18 @@ const getAllTasks = async (req, res) => {
 
 const updateTask = async (req, res) => {
   try {
-    let { id } = req.params;
-    const acknowledgement = await taskModel.updateOne({ _id: id }, details);
+    let { id } = req.params,
+      details = req.body;
+    const acknowledgement = await taskModel.updateOne(
+      { _id: id },
+      {
+        $set: {
+          name: details.name,
+          status: details.status,
+          description: details.description,
+        },
+      }
+    );
     res.status(200).json(acknowledgement);
   } catch (e) {
     res.status(500).json({ "Error Encountered": e });

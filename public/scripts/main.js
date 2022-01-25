@@ -1,14 +1,28 @@
-//Creating DOM references.
+//Creating global DOM references.
+
+const dateTimeDOM = document.getElementById("date-time");
+const modalBackDropDOM = document.getElementById("form-backdrop");
+
+//Add task form input
+const addTaskFormDOM = document.getElementById("add-task-form");
 const taskNameInputDOM = document.querySelector("#task-name");
 const statusInputDOM = document.querySelector("#status");
 const descriptionInputDOM = document.querySelector("#task-description");
-const dateTimeDOM = document.getElementById("date-time");
-const modalBackDropDOM = document.getElementById("form-backdrop");
-const taskListContainerDOM = document.querySelector("#tasks-container");
-const addTaskFormDOM = document.getElementById("add-task-form");
 
+//Edit task form input
+const editTaskFormDOM = document.getElementById("edit-task-form");
+const taskNameEditInputDOM = document.querySelector("#task-name-edit");
+const statusEditInputDOM = document.querySelector("#status-edit");
+const descriptionEditInputDOM = document.querySelector(
+  "#task-description-edit"
+);
+
+const taskListContainerDOM = document.querySelector("#tasks-container");
+
+//Global variables.
 var WEEK = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
-  TASK_LIST = [];
+  TASK_LIST = [],
+  editTaskRecordIndex;
 
 const fetchTasksList = () => {
   fetch("/api/V1-0-1/tasks/")
@@ -30,7 +44,7 @@ const appendDOMTaskList = () => {
   <div class="task-record">
     <div class="task-name">${record.name}</div>
     <div class="icon-ctn">
-      <img src="./images/pencil.png" class="task-record-icon" id=edit-${index}"/>
+      <img src="./images/pencil.png" class="task-record-icon" id=edit-${index} onclick="openEditTaskView(this.id)"/>
     </div>
     <div class="icon-ctn">
       <img src="./images/delete.png" class="task-record-icon" id=delete-${index} onclick="deleteTask(this.id)"/>
@@ -64,8 +78,60 @@ const closeCreateTask = () => {
 };
 
 const openCreateTaskView = () => {
-  modalBackDropDOM.style.display = "block";
   addTaskFormDOM.style.display = "flex";
+  modalBackDropDOM.style.display = "block";
+};
+
+const openEditTaskView = (id) => {
+  editTaskRecordIndex = id.split("-")[1];
+  let taskRecord = TASK_LIST[editTaskRecordIndex];
+
+  editTaskFormDOM.style.display = "flex";
+  modalBackDropDOM.style.display = "block";
+
+  //Update current values.
+  taskNameEditInputDOM.value = taskRecord.name;
+  descriptionEditInputDOM.value = taskRecord.description;
+  statusEditInputDOM.value = taskRecord.status;
+};
+
+const closeEditTask = () => {
+  //Setting values back to default.
+  taskNameEditInputDOM.value = "";
+  descriptionEditInputDOM.value = "";
+  statusEditInputDOM.value = "P";
+
+  modalBackDropDOM.style.display = "none";
+  editTaskFormDOM.style.display = "none";
+};
+
+const editTask = async () => {
+  try {
+    const updatedRecord = getEditChanges();
+    let res = await fetch(`/api/V1-0-1/tasks/${updatedRecord._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: updatedRecord.name,
+        status: updatedRecord.status,
+        description: updatedRecord.description,
+      }),
+    });
+    fetchTasksList();
+    closeEditTask();
+  } catch (e) {
+    alert(e);
+  }
+};
+
+const getEditChanges = () => {
+  updatedRecord = TASK_LIST[editTaskRecordIndex];
+  updatedRecord.name = taskNameEditInputDOM.value;
+  updatedRecord.status = statusEditInputDOM.value;
+  updatedRecord.description = descriptionEditInputDOM.value;
+  return updatedRecord;
 };
 
 const createTask = async () => {
