@@ -24,7 +24,12 @@
         </div>
         <div class="field-container">
           <label for="task-name">Task Name:</label>
-          <input type="text" name="task-name" id="task-name" />
+          <input
+            type="text"
+            name="task-name"
+            id="task-name"
+            autocomplete="off"
+          />
         </div>
         <div class="field-container">
           <label for="status">Status:</label>
@@ -40,6 +45,7 @@
             name="task-description"
             id="task-description"
             class="textarea-desc"
+            autocomplete="off"
           ></textarea>
         </div>
         <button class="themed-btn add-task-btn" onclick="createTask()">

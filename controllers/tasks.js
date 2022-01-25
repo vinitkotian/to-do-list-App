@@ -20,15 +20,22 @@ const getAllTasks = async (req, res) => {
 
 const updateTask = async (req, res) => {
   try {
-    let details = req.body;
-    const acknowledgement = await taskModel.update(
-      { name: details.name },
-      details
-    );
+    let { id } = req.params;
+    const acknowledgement = await taskModel.updateOne({ _id: id }, details);
     res.status(200).json(acknowledgement);
   } catch (e) {
     res.status(500).json({ "Error Encountered": e });
   }
 };
 
-module.exports = { createTask, getAllTasks, updateTask };
+const deleteTask = async (req, res) => {
+  try {
+    let { id } = req.params;
+    const acknowledgement = await taskModel.deleteOne({ _id: id });
+    res.status(200).json(acknowledgement);
+  } catch (e) {
+    res.status(500).json({ "Error encountered": e });
+  }
+};
+
+module.exports = { createTask, getAllTasks, updateTask, deleteTask };

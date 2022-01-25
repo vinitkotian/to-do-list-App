@@ -27,13 +27,13 @@ const fetchTasksList = () => {
 const appendDOMTaskList = () => {
   let taskListDOMArray = TASK_LIST.map(
     (record, index) => `
-  <div class="task-record" id=${index}>
+  <div class="task-record">
     <div class="task-name">${record.name}</div>
     <div class="icon-ctn">
-      <img src="./images/pencil.png" class="task-record-icon" />
+      <img src="./images/pencil.png" class="task-record-icon" id=edit-${index} onclick="deleteTask(this.id)"/>
     </div>
     <div class="icon-ctn">
-      <img src="./images/delete.png" class="task-record-icon" />
+      <img src="./images/delete.png" class="task-record-icon" id=delete-${index} onclick="deleteTask(this.id)"/>
     </div>
   </div>
   `
@@ -54,6 +54,11 @@ const updateDateTime = () => {
 };
 
 const closeCreateTask = () => {
+  //Setting values back to default.
+  taskNameInputDOM.value = "";
+  descriptionInputDOM.value = "";
+  statusInputDOM.value = "P";
+
   modalBackDropDOM.style.display = "none";
   addTaskFormDOM.style.display = "none";
 };
@@ -65,7 +70,7 @@ const openCreateTaskView = () => {
 
 const createTask = async () => {
   try {
-    const response = await fetch("/api/V1-0-1/tasks/", {
+    await fetch("/api/V1-0-1/tasks/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -78,6 +83,19 @@ const createTask = async () => {
     });
     await fetchTasksList();
     closeCreateTask();
+  } catch (e) {
+    alert(e);
+  }
+};
+
+const deleteTask = async (idIndex) => {
+  idIndex = idIndex.split("-")[1];
+  let id = TASK_LIST[idIndex]._id;
+  try {
+    await fetch(`/api/V1-0-1/tasks/${id}`, {
+      method: "DELETE",
+    });
+    await fetchTasksList();
   } catch (e) {
     alert(e);
   }
