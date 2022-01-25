@@ -30,7 +30,7 @@ const appendDOMTaskList = () => {
   <div class="task-record">
     <div class="task-name">${record.name}</div>
     <div class="icon-ctn">
-      <img src="./images/pencil.png" class="task-record-icon" id=edit-${index} onclick="deleteTask(this.id)"/>
+      <img src="./images/pencil.png" class="task-record-icon" id=edit-${index}"/>
     </div>
     <div class="icon-ctn">
       <img src="./images/delete.png" class="task-record-icon" id=delete-${index} onclick="deleteTask(this.id)"/>
