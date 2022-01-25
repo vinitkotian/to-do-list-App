@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task-Manager</title>
 
-    <!--Scripts-->
-    <script src="./scripts/main.js"></script>
-
     <!--Style Dependencies-->
     <link rel="stylesheet" href="./styles/main.css" />
     <link rel="stylesheet" href="./styles/add-task.css" />
@@ -45,7 +42,9 @@
             class="textarea-desc"
           ></textarea>
         </div>
-        <button class="themed-btn add-task-btn">Add Task</button>
+        <button class="themed-btn add-task-btn" onclick="createTask()">
+          Add Task
+        </button>
       </div>
     </div>
 
@@ -60,19 +59,9 @@
     </div>
 
     <!--Task Record Html-->
-    <div id="tasks-container" class="task-list-container">
-      <div class="task-record" id="aasas">
-        <div class="task-name">Weight Training</div>
-        <div class="icon-ctn">
-          <img src="./images/view.png" class="task-record-icon" />
-        </div>
-        <div class="icon-ctn">
-          <img src="./images/pencil.png" class="task-record-icon" />
-        </div>
-        <div class="icon-ctn">
-          <img src="./images/delete.png" class="task-record-icon" />
-        </div>
-      </div>
-    </div>
+    <div id="tasks-container" class="task-list-container">Loading...</div>
+
+    <!--Scripts-->
+    <script src="./scripts/main.js"></script>
   </body>
 </html>

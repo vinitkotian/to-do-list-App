@@ -11,6 +11,11 @@ const taskSchema = new mongoose.Schema({
     type: String,
     default: "Pending",
   },
+  description: {
+    type: String,
+    default: "",
+    maxlength: [500, "Can't exceed 500 chars."],
+  },
 });
 
 const taskModel = new mongoose.model("task-docs", taskSchema);
