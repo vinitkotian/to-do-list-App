@@ -39,9 +39,14 @@ const fetchTasksList = () => {
 };
 
 const appendDOMTaskList = () => {
-  let taskListDOMArray = TASK_LIST.map(
-    (record, index) => `
+  let taskListDOMArray = TASK_LIST.map((record, index) => {
+    let progressIconDOM =
+      record.status == "C"
+        ? `<img src="./images/checked.png" class="task-record-icon" />`
+        : `<img src="./images/in-progress.png" class="task-record-icon" />`;
+    return `
   <div class="task-record">
+    ${progressIconDOM}
     <div class="task-name">${record.name}</div>
     <div class="icon-ctn">
       <img src="./images/pencil.png" class="task-record-icon" id=edit-${index} onclick="openEditTaskView(this.id)"/>
@@ -50,8 +55,8 @@ const appendDOMTaskList = () => {
       <img src="./images/delete.png" class="task-record-icon" id=delete-${index} onclick="deleteTask(this.id)"/>
     </div>
   </div>
-  `
-  );
+  `;
+  });
 
   taskListContainerDOM.innerHTML = "";
   taskListDOMArray.forEach((record) => {
