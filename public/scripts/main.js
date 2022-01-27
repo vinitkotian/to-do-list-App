@@ -43,7 +43,9 @@ const appendDOMTaskList = () => {
     let progressIconDOM =
       record.status == "C"
         ? `<img src="./images/checked.png" class="task-record-icon" />`
-        : `<img src="./images/in-progress.png" class="task-record-icon" />`;
+        : record.status == "IP"
+        ? `<img src="./images/in-progress.png" class="task-record-icon" />`
+        : `<img src="./images/exclamation-mark.png" class="task-record-icon" />`;
     return `
   <div class="task-record">
     ${progressIconDOM}
