@@ -30,6 +30,9 @@ const updateTask = async (req, res) => {
           status: details.status,
           description: details.description,
         },
+      },
+      {
+        runValidators: true,
       }
     );
     res.status(200).json(acknowledgement);
