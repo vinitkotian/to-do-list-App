@@ -124,10 +124,16 @@ const editTask = async () => {
         description: updatedRecord.description,
       }),
     });
-    fetchTasksList();
+    if (res.status === 200) {
+      raiseToast("edit-success");
+    } else {
+      raiseToast("edit-failure");
+    }
     closeEditTask();
+    fetchTasksList();
   } catch (e) {
-    alert(e);
+    raiseToast("edit-failure");
+    closeEditTask();
   }
 };
 
@@ -141,7 +147,7 @@ const getEditChanges = () => {
 
 const createTask = async () => {
   try {
-    await fetch("/api/V1-0-1/tasks/", {
+    res = await fetch("/api/V1-0-1/tasks/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -152,10 +158,17 @@ const createTask = async () => {
         status: statusInputDOM.value,
       }),
     });
-    await fetchTasksList();
-    closeCreateTask();
+    if (res.status === 200) {
+      raiseToast("create-success");
+      await fetchTasksList();
+      closeCreateTask();
+    } else {
+      closeCreateTask();
+      raiseToast("create-failure");
+    }
   } catch (e) {
-    alert(e);
+    closeCreateTask();
+    raiseToast("create-failure");
   }
 };
 
@@ -163,13 +176,26 @@ const deleteTask = async (idIndex) => {
   idIndex = idIndex.split("-")[1];
   let id = TASK_LIST[idIndex]._id;
   try {
-    await fetch(`/api/V1-0-1/tasks/${id}`, {
+    const res = await fetch(`/api/V1-0-1/tasks/${id}`, {
       method: "DELETE",
     });
-    await fetchTasksList();
+    if (res.status === 200) {
+      raiseToast("delete-success");
+      await fetchTasksList();
+    } else {
+      raiseToast("delete-failure");
+    }
   } catch (e) {
-    alert(e);
+    raiseToast("delete-failure");
   }
+};
+
+const raiseToast = (domID) => {
+  let elementDOM = document.querySelector(`#${domID}`);
+  elementDOM.style.display = "flex";
+  setTimeout(() => {
+    elementDOM.style = "none";
+  }, 3000);
 };
 
 function main() {

@@ -1,6 +1,7 @@
 .modal-backdrop {
   display: none;
   position: absolute;
+  top: 0;
   z-index: 1;
   background: rgba(90, 88, 88, 0.5);
   width: 100%;
