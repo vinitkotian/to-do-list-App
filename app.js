@@ -8,12 +8,16 @@ require("dotenv").config();
 
 const taskRouter = require("./routes/tasks");
 const establishClusterConnection = require("./db/connect");
+const notFoundError = require("./middlewares/not-found-error");
 
 //Middlewares hooked to the app.
 app.use(express.static("./public"));
 app.use(express.json());
 
 app.use("/api/V1-0-1/tasks/", taskRouter);
+
+//404 Error.
+app.use("/", notFoundError);
 
 const main = async () => {
   try {
