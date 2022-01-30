@@ -1,23 +1,23 @@
-//internal dependencies.
 const process = require("process");
 
-//external dependency imports.
 const express = require("express");
 const app = express();
 require("dotenv").config();
 
 const taskRouter = require("./routes/tasks");
 const establishClusterConnection = require("./db/connect");
-const notFoundError = require("./middlewares/not-found-error");
-
-//Middlewares hooked to the app.
+const sendNotFoundError = require("./middlewares/notFound");
+const handleErrorResponse = require("./middlewares/error-handler");
 app.use(express.static("./public"));
 app.use(express.json());
 
 app.use("/api/V1-0-1/tasks/", taskRouter);
 
 //404 Error.
-app.use("/", notFoundError);
+app.use(sendNotFoundError);
+
+//Api Errors.
+app.use(handleErrorResponse);
 
 const main = async () => {
   try {
