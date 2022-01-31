@@ -20,7 +20,7 @@ const descriptionEditInputDOM = document.querySelector(
 const taskListContainerDOM = document.querySelector("#tasks-container");
 
 //Global variables.
-var WEEK = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
+var WEEK = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"],
   TASK_LIST = [],
   editTaskRecordIndex;
 
@@ -70,7 +70,7 @@ const updateDateTime = () => {
   setInterval(() => {
     let day = new Date().getDay();
     let time = new Date().toLocaleTimeString();
-    dateTimeDOM.innerHTML = `${WEEK[day - 1]}  ${time}`;
+    dateTimeDOM.innerHTML = `${WEEK[day]}  ${time}`;
   }, 1000);
 };
 
