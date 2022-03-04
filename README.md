@@ -1,6 +1,8 @@
 # The Classic To Do List Application :
 
-This application is classic toDo list app.
+This application is the classic toDo list.
+
+![Cliche](https://media.giphy.com/media/YIwyMbrjUfM0MoQG00/giphy.gif)
 
 ## Technologies used:
 
