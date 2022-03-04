@@ -1,5 +1,5 @@
-const taskModel = require("../models/taskModel");
-const asyncWrapper = require("../middlewares/asyncWrapper");
+const taskModel = require("../models/task-model");
+const asyncWrapper = require("../middlewares/async-wrapper");
 
 const createTask = asyncWrapper(async (req, res) => {
   const taskDoc = await taskModel.create(req.body);
@@ -30,7 +30,7 @@ const updateTask = asyncWrapper(async (req, res) => {
   res.status(200).json(acknowledgement);
 });
 
-const deleteTask = asyncWrapper(async () => {
+const deleteTask = asyncWrapper(async (req,res) => {
   let { id } = req.params;
   const acknowledgement = await taskModel.deleteOne({ _id: id });
   res.status(200).json(acknowledgement);

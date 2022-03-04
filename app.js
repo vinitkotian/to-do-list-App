@@ -4,9 +4,9 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 
-const taskRouter = require("./routes/tasks");
+const taskRouter = require("./routes/task-routes");
 const establishClusterConnection = require("./db/connect");
-const sendNotFoundError = require("./middlewares/notFound");
+const sendNotFoundError = require("./middlewares/not-found");
 const handleErrorResponse = require("./middlewares/error-handler");
 app.use(express.static("./public"));
 app.use(express.json());
