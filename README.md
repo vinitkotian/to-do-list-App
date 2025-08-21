@@ -1,4 +1,4 @@
-# The classic To Do list Application :
+# The classic To Do list application :
 
 This application is the classic toDo list.
 
